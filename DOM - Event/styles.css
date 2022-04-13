@@ -1,0 +1,23 @@
+body{
+  background-color: #8FBDD3;
+}
+.search_engines{
+
+}
+.search_engines_list{
+  background-color: #E4D1B9;
+  padding: 10px;
+
+}
+.search_engines_list li{
+  padding: 10px;
+  list-style: none;
+}
+.search_engines_list.li{
+  padding: 10px;
+}
+.huge {
+  font-size: 5rem;
+  color: red;
+  font-weight: bold;
+}

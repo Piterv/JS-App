@@ -11,36 +11,45 @@ const paraDuckDuckGo = document.createElement("p");
 const nodeDuckDuckGo = document.createTextNode("DuckDuckGo is an internet search engine that emphasizes protecting searchers' privacy and avoiding the filter bubble of personalized search results. DuckDuckGo does not show search results from content farms.");
 paraDuckDuckGo.appendChild(nodeDuckDuckGo);
 //End creating HTML element <p>
-
-//
-var inputVisibility = document.querySelector("input");
-// Selects Button tag.
-var deleteLink = document.querySelector('button');
-//
-var navButtons = document.querySelectorAll('.navigation button');
-
 //
 var element = document.querySelectorAll('article');
 //Stores the search engine button class names.
-var searchButtons = document.querySelectorAll('.search_engines button');
+var searchButtons = document.querySelectorAll('.search_engines_list button');
+// Selects input class tag.
+var inputVisibility = document.querySelector("input");
+// Selects Button class tag.
+var navBarButtons = document.querySelectorAll('.navigation button');
+
+//Add event listener for Distruction and Change_color buttons.
+navBarButtons.forEach(link => {
+  link.addEventListener('click', function(event) {
+    event.preventDefault();
+    if (event.target.className === "Distruction") {
+      var choice = confirm("sure u want to delete?");
+      if (choice) {
+        return navBarButtons[0].hidden = true;
+      } else if (event.target.className === "Distruction") {
+        return navBarButtons[0].classList.toggle("huge");
+      }
+    }else if(event.target.className === "Distruction huge"){
+      return navBarButtons[0].classList.toggle("huge");
+    }else if(event.target.className === "Change_Color"){
+      const color = randomColor();
+      const backColor = document.body.setAttribute("style", "background-color:" + randomColor());
+
+      console.log(backColor);
+    }
+  });
+});
 
 //The function listen to the input tag and assigns or sunsets a hidden attribute to a button.
 inputVisibility.addEventListener('click', function(event) {
-  var status = document.querySelector('button').hasAttribute("hidden");
+  const deleteLink = document.querySelector('button');
+  const status = document.querySelector('button').hasAttribute("hidden");
   if (status == false) {
     return deleteLink.hidden = true;
   } else {
     return deleteLink.hidden = false;
-  }
-});
-//Functon listent to button tag.
-deleteLink.addEventListener('click', function(event) {
-  event.preventDefault();
-  var choice = confirm("sure u want to delete?");
-  if (choice) {
-    return deleteLink.hidden = true;
-  } else {
-    return deleteLink.classList.toggle("huge");
   }
 });
 
@@ -73,8 +82,9 @@ Array.from(searchButtons).forEach(link => {
   });
 });
 // Function generator random color.
-function randomColor(random){
-    var n = random;
-    var randomRGB = "rgb(" + (Math.floor(Math.random() * 256)) + ", " + (Math.floor(Math.random() * 256)) + ", " + (Math.floor(Math.random() * 256)) + ")" + ":";
-    return randomRGB;
+function randomColor() {
+
+  var randomRGB = "rgb(" + (Math.floor(Math.random() * 256)) + ", " + (Math.floor(Math.random() * 256)) + ", " + (Math.floor(Math.random() * 256)) + ")" + ";";
+
+  return randomRGB;
 }

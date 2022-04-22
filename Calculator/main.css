@@ -1,16 +1,17 @@
-body{
-  font-family: Roboto,arial,sans-serif;
+body {
+  font-family: Roboto, arial, sans-serif;
   background-color: #8FBDD3;
   text-align: center;
-
 }
-.calculator-heading{
+
+.calculator-heading {
   font-size: 3rem;
-  color:#BE8C63;
+  color: #BE8C63;
   font-family: "Arvo", cursive;
   text-shadow: 2px 0 #E4D1B9;
 }
-.calculator{
+
+.calculator {
   border: 1px solid #404B69;
   width: 550px;
   height: 450px;
@@ -19,21 +20,24 @@ body{
   background-color: #E4D1B9;
   border-radius: 8px;
 }
-.calculator-block-input{
+
+.calculator-block-input {
   width: 50%;
   height: 40px;
   margin: 30px auto;
   background-color: white;
   border: 1px solid #404B69;
 }
-.number-set{
+
+.number-set {
   display: inline-block;
   height: 70%;
   width: 70%;
   margin: auto;
   background-color: #fff;
 }
-.number-block{
+
+.number-block {
   display: inline-block;
   height: 40px;
   width: 80px;
@@ -43,21 +47,41 @@ body{
   border-radius: 4px;
   background-color: #EEEEEE;
 }
-.f-row{
+
+.f-row {
   margin-top: 15px;
 }
-.spetial-operator{
+
+.spetial-operator {
   background-color: #dadce0;
   border: 1px solid #dadce0;
 }
-.number-block p{
+
+.number-block:hover {
+  cursor: pointer;
+  background-color: #D6D6D6;
+}
+
+.spetial-operator:hover {
+  cursor: pointer;
+  background-color: #9C9EA0;
+}
+
+.keydown-so {
+  background-color: #9C9EA0;
+}
+
+.keydown-nb {
+  background-color: #9C9EA0;
+}
+
+.number-block p {
   color: #202124;
   line-height: 40px;
   margin: 0;
 }
-footer{
 
+footer {
   color: #DBEDF3;
   font-family: sans-serif;
-
 }

@@ -1,38 +1,44 @@
-const symbol = document.querySelectorAll('.digit');
+const symbols = document.querySelectorAll('.digit');
 const calInput = document.getElementById('calculator-input');
-const defaultInput = document.getElementById('calculator-input').textContent = "0";
+calInput.textContent = 0;
+var y = [20, '-', 21];
+var a;
+var x = y.forEach(num => {
+  a =  Number(num);
+});
+
+console.log(a);
+
 //Stores typed numbers
 let firstNumbers = [];
 let secondNumbers = [];
 // Stores sign + - or / *
 let arithmeticSign = [];
 //Calls on mouse click
-const mouseClick = symbol.forEach(item => {
+const mouseClick = symbols.forEach(item => {
   item.addEventListener('click', event => {
 
-    const num = event.target.innerText;
-    calculator(num);
+    calculator(event.target.innerText);
   });
 });
 //Calls on keydown.
 const keydownPress = document.addEventListener('keydown', (event) => {
 
-  const num = event.key;
-  calculator(num);
+  calculator(event.key);
 });
 // Function manage calculator.
 function calculator(num) {
+  if (firstNumbers.length == 0 && arithmeticSign.length == 0) {
+  calInput.textContent = '';
+  }
   if (num == '0' || num == '1' || num == '2' || num == '3' || num == '4' || num == '5' || num == '6' || num == '7' || num == '8' || num == '9' || num == '.') {
     setNumber(num);
-  } else if (num == '-' || num == '+' || num == '/' || num == '*') {
+  } else if (num == '-' || num == '+' || num == '/' || num == '*' || num == "%") {
     setArithmeticSign(num);
   } else if (num == 'CE') {
     reset();
-  } else if (num === '=') {
-    calculation();
+  } else if (num === '=' || num === "Enter") {
     calInput.textContent = calculation();
-  } else if (num == '(' || num == ')') {
-    firstNumbers.push(num);
   }
 }
 //Set number.
@@ -69,11 +75,13 @@ function calculation() {
     return firstSetNumbers / secondSetNumbers;
   } else if (arithmeticSign[0] === '*') {
     return firstSetNumbers * secondSetNumbers;
+  }else if (arithmeticSign[0] === '%') {
+    return firstSetNumbers * secondSetNumbers;
   }
 }
 //Clean all variables, and set 0.
 function reset() {
-  calInput.textContent = defaultInput;
+  calInput.textContent = 0;
   firstNumbers = [];
   secondNumbers = [];
   arithmeticSign = [];

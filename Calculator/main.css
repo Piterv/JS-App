@@ -62,6 +62,13 @@ body {
   background-color: #dadce0;
   border: 1px solid #dadce0;
 }
+.locked{
+  background-color:#EEEEEE;
+}
+.locked:hover{
+  background-color: #EEEEEE;
+    cursor: default;
+}
 
 .number-block:hover {
   cursor: pointer;

@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const https = require('https');
 
 const app = express();
-// parse application.
+// use body-parse application.
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -11,12 +11,23 @@ app.use(bodyParser.urlencoded({
 // Respond on request with loading Home page.
 app.get('/', (req, res) => {
 
+  res.sendFile(__dirname + "/index.html");
+
+});
+
+
+app.post("/", (req, res)=>{
+  console.log("Post request " + req.body.CityInput);
+
   //URL to get information from.
-  const url = 'https://api.openweathermap.org/data/2.5/weather?q=Kyiv&appid=250b9be7c051920031529c06569a4ced&units=metric';
+  const quiry = req.body.CityInput;
+  const apiKey = "250b9be7c051920031529c06569a4ced";
+  const unit = "metric";
+  const url = 'https://api.openweathermap.org/data/2.5/weather?q='+ quiry +'&appid='+ apiKey +'&units='+ unit +'';
   //HTTPS get request to openweathermap.org
   https.get(url, (response) => {
 
-    console.log(response.statusCode);
+    console.log("Server openweathermap response code: " + response.statusCode);
 
     response.on('data', (data) => {
       //Parse the received data into Json format.
@@ -25,19 +36,21 @@ app.get('/', (req, res) => {
       const temp = weatherData.main.temp;
       const weatherDescription = weatherData.weather[0].description;
       const weatherLocation = weatherData.name;
-      const weatherIcon = weatherData.weather[0].icon + '.png';
-      const icon = 'http://openweathermap.org/img/wn/'+ weatherIcon + '"';
-
+      const weatherIcon = weatherData.weather[0].icon;
+      const imageURL = "http://openweathermap.org/img/wn/"+ weatherIcon +"@2x.png";
 
       //Send the received data to the user.
-      res.write('<p>The weather in ' + weatherLocation + ' is curently ' + weatherDescription + '</p>');
-      res.write('<h1> The temperature in London is ' + temp + ' degrees Celcius.</h1>');
-      res.write('<img src="http://openweathermap.org/img/wn/'+ weatherIcon + '" alt="weather img">');
+      res.write('<p>The weather curently is ' + weatherDescription + '</p>');
+      res.write('<h1> The temperature in '+ quiry +' is ' + temp + ' degrees Celcius.</h1>');
+      res.write('<img src='+ imageURL +' alt="weather img">');
       res.send();
     })
   });
+})
 
-});
+
+
+
 //Respond to POST request on the root route (/)
 app.post('/', (req, res) => {
 

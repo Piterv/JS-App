@@ -48,13 +48,6 @@ app.post("/", (req, res)=>{
   });
 })
 
-
-
-
-//Respond to POST request on the root route (/)
-app.post('/', (req, res) => {
-
-});
 //Run server on port 3000.
 app.listen(3000, () => {
   console.log("Server runs on port 3000");

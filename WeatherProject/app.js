@@ -8,12 +8,14 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+//Serve static main.css file.
+app.use(express.static('public'));
+
 // Respond on request with loading Home page.
 app.get('/', (req, res) => {
-
   res.sendFile(__dirname + "/index.html");
-
 });
+
 
 
 app.post("/", (req, res)=>{
@@ -47,6 +49,7 @@ app.post("/", (req, res)=>{
     })
   });
 })
+
 
 //Run server on port 3000.
 app.listen(3000, () => {

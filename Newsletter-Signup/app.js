@@ -2,27 +2,42 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require("request");
-//
+
 const app = express();
 
-//A middleware for serving static files.
-app.use(express.static('public'));
-
-//Parse application.
+//Use parse application.
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+//A middleware for serving static files.
+app.use(express.static('public'))
 
-//Response to the get root method of the website.
+
+// GET method route
 app.get('/', (req, res) => {
-
-  res.sendFile(__dirname + "/public/signup.html", (err)=>{
+  res.sendFile(__dirname + "/signup.html", (err) => {
     if (err) {
       console.log(err);
       res.end(err.message);
     }
   });
 });
+
+// POST method route
+app.post('/', (req, res) => {
+
+  const fname = req.body.fname;
+  const lname = req.body.lname;
+  const email = req.body.email;
+
+  console.log('POST request to the homepage: ' + fname);
+  console.log('POST request to the homepage: ' + lname);
+  console.log('POST request to the homepage: ' + email);
+
+  res.write('<p>The weather curently is </p>');
+  res.end();
+});
+
 
 // Deploy the server on port 3000
 app.listen(3000, () => {

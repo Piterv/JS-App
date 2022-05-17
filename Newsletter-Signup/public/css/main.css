@@ -35,3 +35,8 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+.cont{
+  width: auto;
+  max-width: 680px;
+  padding: 0 15px;
+}

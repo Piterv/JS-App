@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="PeterZ">
+  <meta name="generator" content="Hugo 0.98.0">
+  <title>Newsletter Signup</title>
+  <link rel="icon" type="image/x-icon" href="/image/favicon.ico">
+
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sign-in/">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="css/main.css">
+
+</head>
+
+<body class="d-flex flex-column h-100">
+
+  <main class="container">
+    <div class="bg-light p-5 rounded mt-3">
+      <h1>Success</h1>
+      <p class="lead">You are signed up for news!</p>
+      <a class="btn btn-lg btn-primary" href="/" role="button">Home</a>
+    </div>
+  </main>
+
+  <footer class="footer mt-auto py-3 bg-light">
+    <div class="cont">
+      <span class="text-muted" id="currentTime"> PeterZ; 2017 – </span>
+    </div>
+  </footer>
+
+
+  <script type="text/javascript">
+    const date = new Date();
+    const year = date.getFullYear();
+
+    document.getElementById('currentTime').append(year);
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

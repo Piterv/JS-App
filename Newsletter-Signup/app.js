@@ -12,7 +12,6 @@ app.use(bodyParser.urlencoded({
 //A middleware for serving static files.
 app.use(express.static('public'))
 
-
 // GET method route
 app.get('/', (req, res) => {
   res.sendFile(__dirname + "/signup.html", (err) => {
@@ -30,14 +29,11 @@ app.post('/', (req, res) => {
   const lname = req.body.lname;
   const email = req.body.email;
 
-  console.log('POST request to the homepage: ' + fname);
-  console.log('POST request to the homepage: ' + lname);
-  console.log('POST request to the homepage: ' + email);
+  // Send success or error page.
 
-  res.write('<p>The weather curently is </p>');
-  res.end();
+    res.sendFile(__dirname + "/success.html");
+
 });
-
 
 // Deploy the server on port 3000
 app.listen(3000, () => {

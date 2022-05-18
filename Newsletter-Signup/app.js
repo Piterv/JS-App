@@ -2,6 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require("request");
+const https = require("https");
 
 const app = express();
 
@@ -25,15 +26,54 @@ app.get('/', (req, res) => {
 // POST method route
 app.post('/', (req, res) => {
 
-  const fname = req.body.fname;
-  const lname = req.body.lname;
+//Get user data from HTML form and store them by category.
+  const firstName = req.body.fname;
+  const lastName = req.body.lname;
   const email = req.body.email;
 
-  // Send success or error page.
+  //Object data schema.
+  let data = {
+    members: [{
+      email_address: email,
+      status: "subscribed",
+      merge_fields: {
+        FNAME: firstName,
+        LNAME: lastName
+      }
+    }]
+  };
 
-    res.sendFile(__dirname + "/success.html");
+  // Turn data into JSON.
+  const jsonData = JSON.stringify(data);
+  const url = "https://us10.api.mailchimp.com/3.0/lists/57b1f6ff97";
+  const options = {
+    method: "POST",
+    auth: "peter1:7cabbdc02fc2ebd0e1562b9e7fc7f7d7-us10"
+  }
 
+  //Create request to the mailchimp server.
+  const request = https.request(url, options, (response) => {
+    response.on("data", (data) => {
+      console.log(JSON.parse(data));
+    });
+  });
+
+  request.on('error', (e) => {
+    console.error("Thi is request eror" + e);
+  });
+
+  //Send request to the mailchimp server.
+  request.write(jsonData);
+  //Done with the request.
+  request.end();
+
+  // Send success page to the user.
+  res.sendFile(__dirname + "/success.html");
 });
+
+
+
+
 
 // Deploy the server on port 3000
 app.listen(3000, () => {

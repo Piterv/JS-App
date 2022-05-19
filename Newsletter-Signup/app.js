@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 // POST method route
 app.post('/', (req, res) => {
 
-//Get user data from HTML form and store them by category.
+  //Get user data from HTML form and store them by category.
   const firstName = req.body.fname;
   const lastName = req.body.lname;
   const email = req.body.email;
@@ -45,35 +45,46 @@ app.post('/', (req, res) => {
 
   // Turn data into JSON.
   const jsonData = JSON.stringify(data);
-  const url = "https://us10.api.mailchimp.com/3.0/lists/57b1f6ff97";
+  //Audience url.
+  const url = "https://us10.api.mailchimp.com/3.0/lists/1aad9a8f5f";
+  //API Key.
   const options = {
     method: "POST",
-    auth: "peter1:7cabbdc02fc2ebd0e1562b9e7fc7f7d7-us10"
+    auth: ""
   }
 
   //Create request to the mailchimp server.
   const request = https.request(url, options, (response) => {
+    //Handle response from mailchimp server.
     response.on("data", (data) => {
-      console.log(JSON.parse(data));
-    });
-  });
 
-  request.on('error', (e) => {
-    console.error("Thi is request eror" + e);
+      let serverResponse = (JSON.parse(data));
+      console.log(serverResponse);
+
+      if (response.statusCode <= 200 || response.statusCode >= 300) {
+        console.log(`Successful HTTP request status code: ${response.statusCode}`);
+
+        // Send error page to the user.
+        res.sendFile(__dirname + "/success.html");
+      } else {
+        console.log(`Error statusCode: ${response.statusCode}`);
+        // Send success page to the user.
+        res.sendFile(__dirname + "/error.html");
+      }
+    });
+
   });
 
   //Send request to the mailchimp server.
   request.write(jsonData);
   //Done with the request.
   request.end();
-
-  // Send success page to the user.
-  res.sendFile(__dirname + "/success.html");
 });
 
+app.post('/error', (req, res) => {
 
-
-
+  res.redirect('/');
+});
 
 // Deploy the server on port 3000
 app.listen(3000, () => {

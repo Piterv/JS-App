@@ -3,13 +3,16 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
+//parse aplication
+app.use(bodyParser.urlencoded({extended: true}));
+//Serving static files.
+app.use(express.static('public'));
+// Colection of to-do list items.
 let items = ["Buy Food"];
 
 //EJS looks in the folder: view.
 app.set('view engine', 'ejs');
 
-//parse aplication
-app.use(bodyParser.urlencoded({extended: true}));
 
 //Get method handler.
 app.get("/", (req, res) => {
@@ -32,6 +35,7 @@ app.post("/", (req, res)=>{
   let item = req.body.newItem;
   items.push(item);
 
+//Redirect to root route: "/".
   res.redirect('/');
 })
 

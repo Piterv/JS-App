@@ -3,27 +3,35 @@
 
 <head>
   <meta charset="utf-8">
-  <title>weekday</title>
+  <title>To-do list</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
 
-  <h1 style="color: purple"><%= kindOfDay %></h1>
 
-  <ul>
+  <div class="box" id="heading">
+    <h1><%= kindOfDay %></h1>
+  </div>
 
-<!-- Creates new list item. -->
+  <div class="box">
+      <!-- When a user adds a new task, it creates a new list item. -->
+      <% for(let i = 0; i < newListItems.length; i++ ){ %>
+      <div class="item">
+        <input type="checkbox">
+        <p> <%= newListItems[i] %> </p>
+      </div>
+      <% } %>
 
-    <% for(let i = 0; i < newListItems.length; i++ ){ %>
-      <li> <%= newListItems[i] %> </li>
-    <% } %>
+      <form class="item" action="/" method="post">
+        <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+        <button type="submit" name="button">+</button>
+      </form>
 
-  </ul>
+  </div>
 
-  <form class="" action="/" method="post">
-    <input type="text" name="newItem">
-    <button type="submit" name="button">Add</button>
-  </form>
+
+
 
 </body>
 

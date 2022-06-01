@@ -1,7 +1,7 @@
-
 const express = require("express");
 const bodyParser = require("body-parser");
-
+//Name of the weekday.
+const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
 const app = express();
 
@@ -9,23 +9,21 @@ const app = express();
 app.set('view engine', 'ejs');
 
 //parse aplication
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 //Get method handler.
-app.get("/", (req, res)=>{
+app.get("/", (req, res) => {
+
   const today = new Date();
-  let day = weekday[today.getDay()];
+  let currentDay = today.getDay();
+  let day = weekday[currentDay];
 
-  if(today.getDay()){
-
-    res.sendFile(__dirname + "/index.html");
-  }else{
-    res.send("Boo! I have to work");
-  }
-
+  res.render('list', {kindOfDay: day});
 });
 
 
-app.listen(3000, ()=>{
+app.listen(3000, () => {
   console.log("Server started on port 3000");
 });

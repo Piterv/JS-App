@@ -7,11 +7,13 @@
 </head>
 
 <body>
-  <h1>Hello! today is <span id="dayweek"></span> </h1>
 
-  <p>lets work together!</p>
-
-
+  <%  if(kindOfDay === 'Sunday' || kindOfDay === 'Saturday'){ %>
+     <h1 style = "color: purple" >Hello, today is <%= kindOfDay %>! </h1>
+  <% }else{ %>
+     <h1 style = "color: blue ">Hello, today is <%= kindOfDay %>! </h1>
+     <p>So you have to keep working!</p>
+  <% }%>
 
 </body>
 

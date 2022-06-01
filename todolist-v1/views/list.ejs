@@ -8,12 +8,22 @@
 
 <body>
 
-  <%  if(kindOfDay === 'Sunday' || kindOfDay === 'Saturday'){ %>
-     <h1 style = "color: purple" >Hello, today is <%= kindOfDay %>! </h1>
-  <% }else{ %>
-     <h1 style = "color: blue ">Hello, today is <%= kindOfDay %>! </h1>
-     <p>So you have to keep working!</p>
-  <% }%>
+  <h1 style="color: purple"><%= kindOfDay %></h1>
+
+  <ul>
+
+<!-- Creates new list item. -->
+
+    <% for(let i = 0; i < newListItems.length; i++ ){ %>
+      <li> <%= newListItems[i] %> </li>
+    <% } %>
+
+  </ul>
+
+  <form class="" action="/" method="post">
+    <input type="text" name="newItem">
+    <button type="submit" name="button">Add</button>
+  </form>
 
 </body>
 
